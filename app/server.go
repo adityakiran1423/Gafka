@@ -30,7 +30,10 @@ func main() {
 	var buff = make([]byte, 256)
 
 	conn.Read(buff)
+
+	fmt.Println("buff start")
 	fmt.Println(buff)
+	fmt.Println("buff ends")
 
 	//var correlation_id = 0; 
 
