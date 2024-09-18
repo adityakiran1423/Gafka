@@ -27,7 +27,7 @@ func main() {
 	}
 	defer conn.Close()
 	
-	var buff = make([]byte, 8)
+	var buff = make([]byte, 256)
 
 	conn.Read(buff)
 
