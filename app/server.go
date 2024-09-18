@@ -31,12 +31,10 @@ func main() {
 
 	conn.Read(buff)
 
-	fmt.Println("buff start")
-	fmt.Println(buff)
-	fmt.Println("buff ends")
+	message_length := make([]byte, 4)
+	copy(message_length, []byte{'0', '0', '0', '0'})
+	correlation_id := append(message_length, buff[8:12]...)
 
-	//var correlation_id = 0; 
-
-	conn.Write([]byte{0, 0, 0, 0, 0, 0, 0, 7})
+	conn.Write(correlation_id)
 
 }
