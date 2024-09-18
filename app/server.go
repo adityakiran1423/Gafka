@@ -30,6 +30,9 @@ func main() {
 	var buff = make([]byte, 256)
 
 	conn.Read(buff)
+	fmt.Println(buff)
+
+	//var correlation_id = 0; 
 
 	conn.Write([]byte{0, 0, 0, 0, 0, 0, 0, 7})
 
