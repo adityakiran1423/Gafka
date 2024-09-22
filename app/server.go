@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 	"os"
-	"encoding/binary" // added externally
+	// "encoding/binary" // added externally
 )
 
 // Ensures gofmt doesn't remove the "net" and "os" imports in stage 1 (feel free to remove this!)
@@ -38,13 +38,9 @@ func main() {
 
 	parseApiVersion(byte_api_version)
 
-	int_api_verion := binary.BigEndian.Uint64(byte_api_version)
+	// int_api_verion := binary.BigEndian.Uint64(byte_api_version)
 
 	conn.Write(correlation_id)
-
-	if int_api_verion<0 && int_api_verion>4{
-		conn.Write(byte_api_version)
-	}
 }
 
 
