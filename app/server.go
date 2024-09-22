@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"encoding/binary" // added externally
 )
 
 // Ensures gofmt doesn't remove the "net" and "os" imports in stage 1 (feel free to remove this!)
@@ -11,9 +12,6 @@ var _ = net.Listen
 var _ = os.Exit
 
 func main() {
-	// You can use print statements as follows for debugging, they'll be visible when running tests.
-	// fmt.Println("Logs from your program will appear here!")
-
 	l, err := net.Listen("tcp", "0.0.0.0:9092")
 	if err != nil {
 		fmt.Println("Failed to bind to port 9092")
@@ -35,6 +33,22 @@ func main() {
 	copy(message_length, []byte{'0', '0', '0', '0'})
 	correlation_id := append(message_length, buff[8:12]...)
 
+	byte_api_version := make([]byte, 2)
+	copy(byte_api_version, buff[6:8])
+
+	parseApiVersion(byte_api_version)
+
+	int_api_verion := binary.BigEndian.Uint64(byte_api_version)
+
 	conn.Write(correlation_id)
 
+	if int_api_verion<0 && int_api_verion>4{
+		conn.Write(byte_api_version)
+	}
+}
+
+
+func parseApiVersion(message []byte) []byte{
+	fmt.Println(message)
+	return message
 }
