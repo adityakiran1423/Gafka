@@ -25,11 +25,11 @@ func main() {
 
 	defer conn.Close()
 
-	var buff = make([]byte, 256)
-	// var buff = make([]byte, 1024)
+	// var buff = make([]byte, 256)
+	var buff = make([]byte, 1024)
 	conn.Read(buff)
 
-	fmt.Printf("recieved buff is %x and in string form -> %s", buff, buff)
+	// fmt.Printf("recieved buff is %x and in string form -> %s", buff, buff)
 
 	message_length := make([]byte, 4)
 	copy(message_length, []byte{'0', '0', '0', '0'})
@@ -40,15 +40,15 @@ func main() {
 
 	if request_api_version > 0 && request_api_version <= 4 {
 		kafka_response := append(correlation_id, buff[6:8]...)
-		fmt.Println("in if")
-		fmt.Printf("kafka response is %x", kafka_response)
+		// fmt.Println("in if")
+		// fmt.Printf("kafka response is %x", kafka_response)
 		conn.Write(kafka_response)
 	}
 	api_error_code := make([]byte, 2)
 
 	copy(api_error_code, []byte{0x00, 0x23})
 	kafka_response := append(correlation_id, api_error_code...)
-	fmt.Println("in else ffs")
-	fmt.Printf("kafka response is %x", kafka_response)
+	// fmt.Println("in else ffs")
+	// fmt.Printf("kafka response is %x", kafka_response)
 	conn.Write(kafka_response)
 }
