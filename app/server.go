@@ -31,7 +31,7 @@ func main() {
 
 	message_length := make([]byte, 4)
 	copy(message_length, []byte{'0', '0', '0', '0'})
-	fmt.Printf("message_length is %x\n", message_length)
+	// fmt.Printf("message_length is %x\n", message_length)
 	correlation_id := append(message_length, buff[8:12]...)
 
 
@@ -43,7 +43,9 @@ func main() {
 		kafka_response := append(correlation_id, buff[6:8]...)
 		conn.Write(kafka_response)
 	}
-	kafka_response :=append(correlation_id, []byte{'1','0','0','0','1','1'}...)
+	api_error_code := make([]byte, 8)
+	copy(api_error_code, []byte{'0','0','1','0','0','0','1','1'})
+	kafka_response :=append(correlation_id, api_error_code...)
 	conn.Write(kafka_response)
 	// byte_api_version := make([]byte, 2)
 	// copy(byte_api_version, buff[6:8])
