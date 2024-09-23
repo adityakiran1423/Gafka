@@ -36,9 +36,10 @@ func main() {
 
 	byte_api_version := make([]byte, 2)
 	copy(byte_api_version, buff[6:8])
-	fmt.Println(correlation_id)
+	// fmt.Println(correlation_id)
 	api_version := parseApiVersion(byte_api_version)
 	fmt.Printf("api_version recieved from func is %s\n", api_version)
+	fmt.Printf("api_version recieved from func in hex is %x\n", api_version)
 	// int_api_verion := binary.BigEndian.Uint64(byte_api_version)
 
 	kafka_response := append(correlation_id, api_version...)
@@ -51,10 +52,10 @@ func main() {
 
 func parseApiVersion(message []byte) []byte {
 	// func parseApiVersion(message []byte) int{
-	fmt.Printf("api from the request message in hex is %d\n", message)
+	fmt.Printf("api from the request message in hex is %x\n", message)
 	// fmt.Printf("second hex's decimal value is %d\n", message[1])
 	api_version := message[0] + message[1]
-	fmt.Println(api_version)
+	// fmt.Println(api_version)
 	if api_version > 0 && api_version <= 4 {
 		return message
 	}
