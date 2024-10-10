@@ -1,29 +1,9 @@
-[![progress-banner](https://backend.codecrafters.io/progress/kafka/6b288369-b9ae-4989-958a-86f67734e0eb)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
+# Gafka
 
-This is a starting point for Go solutions to the
-["Build Your Own Kafka" Challenge](https://codecrafters.io/challenges/kafka).
+A toy Kafka clone that's capable of accepting and responding to APIVersions & Fetch API requests. Makes use of encoding and decoding messages using the Kafka wire protocol.
+<!--You'll also learn about handling the network protocol, event loops, TCP sockets and more.-->
 
-In this challenge, you'll build a toy Kafka clone that's capable of accepting
-and responding to APIVersions & Fetch API requests. You'll also learn about
-encoding and decoding messages using the Kafka wire protocol. You'll also learn
-about handling the network protocol, event loops, TCP sockets and more.
-
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
-
-# Passing the first stage
-
-The entry point for your Kafka implementation is in `app/server.go`. Study and
-uncomment the relevant code, and push your changes to pass the first stage:
-
-```sh
-git commit -am "pass 1st stage" # any msg
-git push origin master
-```
-
-That's all!
-
-# Stage 2 & beyond
+## For running
 
 Note: This section is for stages 2 and beyond.
 
