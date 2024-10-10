@@ -5,8 +5,6 @@ A toy Kafka clone that's capable of accepting and responding to APIVersions & Fe
 
 ## For running
 
-Note: This section is for stages 2 and beyond.
-
 1. Ensure you have `go (1.19)` installed locally
 1. Run `./your_program.sh` to run your Kafka broker, which is implemented in
    `app/server.go`.
